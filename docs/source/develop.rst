@@ -61,6 +61,7 @@ To automatic generate the API documents, use the following command:
 To build document website, use the command:
 
 .. code-block:: bash
+    
     cd docs
     make html
     

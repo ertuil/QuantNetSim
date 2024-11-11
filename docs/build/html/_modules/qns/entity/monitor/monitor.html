@@ -88,7 +88,6 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">qns.entity.entity</span> <span class="kn">import</span> <span class="n">Entity</span>
-<span class="kn">from</span> <span class="nn">qns.network.network</span> <span class="kn">import</span> <span class="n">QuantumNetwork</span>
 <span class="kn">from</span> <span class="nn">qns.simulator.event</span> <span class="kn">import</span> <span class="n">Event</span>
 <span class="kn">from</span> <span class="nn">qns.simulator.simulator</span> <span class="kn">import</span> <span class="n">Simulator</span>
 <span class="kn">from</span> <span class="nn">qns.simulator.ts</span> <span class="kn">import</span> <span class="n">Time</span>
@@ -108,7 +107,7 @@
 
 
 <div class="viewcode-block" id="Monitor"><a class="viewcode-back" href="../../../../qns.entity.monitor.html#qns.entity.Monitor">[docs]</a><span class="k">class</span> <span class="nc">Monitor</span><span class="p">(</span><span class="n">Entity</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">network</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QuantumNetwork</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Monitor is a virtual entity that helps users to collect network status.</span>
 
@@ -174,7 +173,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
 
 <div class="viewcode-block" id="Monitor.add_attribution"><a class="viewcode-back" href="../../../../qns.entity.monitor.html#qns.entity.Monitor.add_attribution">[docs]</a>    <span class="k">def</span> <span class="nf">add_attribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                        <span class="n">calculate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Simulator</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QuantumNetwork</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Event</span><span class="p">]],</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">calculate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Simulator</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Event</span><span class="p">]],</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set an attribution that will be recorded. For example, an attribution could be the throughput, or the fidelity.</span>
 
@@ -224,7 +223,7 @@
 <span class="sd">            # record network status every 3 seconds.</span>
 <span class="sd">            m.at_period(3)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span><span class="p">(</span><span class="n">period_time</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">period_time</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">watch_period</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">period_time</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Monitor.at_event"><a class="viewcode-back" href="../../../../qns.entity.monitor.html#qns.entity.Monitor.at_event">[docs]</a>    <span class="k">def</span> <span class="nf">at_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

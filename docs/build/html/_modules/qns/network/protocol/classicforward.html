@@ -40,7 +40,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Install Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../develop.html">Develop Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">qns</a></li>
 </ul>
 
         </div>
@@ -94,7 +94,7 @@
 <span class="kn">from</span> <span class="nn">qns.simulator.event</span> <span class="kn">import</span> <span class="n">Event</span>
 
 
-<div class="viewcode-block" id="ClassicPacketForwardApp"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.ClassicPacketForwardApp">[docs]</a><span class="k">class</span> <span class="nc">ClassicPacketForwardApp</span><span class="p">(</span><span class="n">Application</span><span class="p">):</span>
+<div class="viewcode-block" id="ClassicPacketForwardApp"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.classicforward.ClassicPacketForwardApp">[docs]</a><span class="k">class</span> <span class="nc">ClassicPacketForwardApp</span><span class="p">(</span><span class="n">Application</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This application will generate routing table for classic networks</span>
 <span class="sd">    and allow nodes to forward classic packats to the destination.</span>
@@ -109,10 +109,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">route</span> <span class="o">=</span> <span class="n">route</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handleClassicPacket</span><span class="p">,</span> <span class="p">[</span><span class="n">RecvClassicPacket</span><span class="p">],</span> <span class="p">[])</span>
 
-<div class="viewcode-block" id="ClassicPacketForwardApp.install"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.ClassicPacketForwardApp.install">[docs]</a>    <span class="k">def</span> <span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">QNode</span><span class="p">,</span> <span class="n">simulator</span><span class="p">:</span> <span class="n">Simulator</span><span class="p">):</span>
+<div class="viewcode-block" id="ClassicPacketForwardApp.install"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.classicforward.ClassicPacketForwardApp.install">[docs]</a>    <span class="k">def</span> <span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">QNode</span><span class="p">,</span> <span class="n">simulator</span><span class="p">:</span> <span class="n">Simulator</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">simulator</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ClassicPacketForwardApp.handleClassicPacket"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.ClassicPacketForwardApp.handleClassicPacket">[docs]</a>    <span class="k">def</span> <span class="nf">handleClassicPacket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">QNode</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
+<div class="viewcode-block" id="ClassicPacketForwardApp.handleClassicPacket"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.classicforward.ClassicPacketForwardApp.handleClassicPacket">[docs]</a>    <span class="k">def</span> <span class="nf">handleClassicPacket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">QNode</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
         <span class="n">packet</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">packet</span>
         <span class="n">self_node</span><span class="p">:</span> <span class="n">QNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node</span><span class="p">()</span>
 

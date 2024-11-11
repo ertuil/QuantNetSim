@@ -92,12 +92,12 @@ The ``QuantumNetwork`` provides the following APIs to get or add nodes, channels
     n2 = QNode(name="n2")
     net.add_node(n2)
 
-    # get a quantum channel by its name
-    l1 = net.get_qchannel("l1")
+      # get a quantum channel by its name
+    l1 = net.get_qchannel("l1,2")
 
     # add a quantum channel
     l2 = QuantumChannel("l2")
-    net.add_node(l2)
+    net.add_qchannel(l2)
 
     node_list = net.nodes # get all nodes
     qchannel_list = net.qchannels # get all quantum channels

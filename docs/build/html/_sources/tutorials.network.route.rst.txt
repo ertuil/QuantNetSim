@@ -30,7 +30,7 @@ An example of using this algorithm is:
 
 .. code-block:: python
 
-    from qns.network.topology import RandomTopology, ClassicTopology
+    from qns.network.topology import RandomTopology
     from qns.network.network import QuantumNetwork
     from qns.network.route import DijkstraRouteAlgorithm
 
@@ -39,8 +39,8 @@ An example of using this algorithm is:
         lines_number=10,
         qchannel_args={"delay": 0.05, "bandwidth": 10},
         cchannel_args={"delay": 0.05},
-        memory_args=[{"capacity": memory_capacity}],
-        nodes_apps=[EntanglementDistributionApp(init_fidelity=init_fidelity)])
+        memory_args=[{"capacity": 50}],
+        nodes_apps=[EntanglementDistributionApp(init_fidelity=0.99)])
 
     # use the ``DijkstraRouteAlgorithm``, using the bandwidth as the ``metric_func``
     route = DijkstraRouteAlgorithm(metric_func=lambda qchannel: qchannel.bandwidth)

@@ -161,16 +161,16 @@
 </pre></div>
 </div>
 <p>SimQN also provides some commonly used decoherence models, including dephase model and depolar model for both transmission error and storage error in <code class="docutils literal notranslate"><span class="pre">qns.model.qubit.decoherence</span></code>. Users can use the <code class="docutils literal notranslate"><span class="pre">qns.model.qubit.factory</span></code> to set up the models:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qns.models.qubit.decoherence</span> <span class="kn">import</span> <span class="n">DepolarStorageErrorModel</span><span class="p">,</span> <span class="n">DephaseTransmitErrorModel</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qns.models.qubit.decoherence</span> <span class="kn">import</span> <span class="n">DepolarStorageErrorModel</span><span class="p">,</span> <span class="n">DephaseTransferErrorModel</span>
 <span class="kn">from</span> <span class="nn">qns.models.qubit.factory</span> <span class="kn">import</span> <span class="n">QubitFactory</span>
 
-<span class="n">Qubit</span> <span class="o">=</span> <span class="n">QubitFactory</span><span class="p">(</span><span class="n">store_error_model</span><span class="o">=</span><span class="n">DepolarStorageErrorModel</span><span class="p">,</span> <span class="n">transfer_error_model</span><span class="o">=</span><span class="n">DephaseTransmitErrorModel</span><span class="p">)</span>
+<span class="n">Qubit</span> <span class="o">=</span> <span class="n">QubitFactory</span><span class="p">(</span><span class="n">store_error_model</span><span class="o">=</span><span class="n">DepolarStorageErrorModel</span><span class="p">,</span> <span class="n">transfer_error_model</span><span class="o">=</span><span class="n">DephaseTransferErrorModel</span><span class="p">)</span>
 <span class="n">q1</span> <span class="o">=</span> <span class="n">Qubit</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;q1&quot;</span><span class="p">)</span>
 <span class="n">q2</span> <span class="o">=</span> <span class="n">Qubit</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;q2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>SimQN also have error models for operating or measuring on qubits, by implementing the <code class="docutils literal notranslate"><span class="pre">operate_error_model</span></code> and <code class="docutils literal notranslate"><span class="pre">measure_error_model</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qns.models.qubit.decoherence</span> <span class="kn">import</span> <span class="n">DepolarStorageErrorModel</span><span class="p">,</span> <span class="n">DephaseTransmitErrorModel</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qns.models.qubit.decoherence</span> <span class="kn">import</span> <span class="n">DepolarStorageErrorModel</span><span class="p">,</span> <span class="n">DephaseTransferErrorModel</span>
 <span class="kn">from</span> <span class="nn">qns.models.qubit.factory</span> <span class="kn">import</span> <span class="n">QubitFactory</span>
 
 <span class="n">Qubit</span> <span class="o">=</span> <span class="n">QubitFactory</span><span class="p">(</span><span class="n">operate_decoherence_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>

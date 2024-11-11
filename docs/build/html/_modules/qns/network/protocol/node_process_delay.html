@@ -40,7 +40,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Install Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../develop.html">Develop Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">qns</a></li>
 </ul>
 
         </div>
@@ -93,7 +93,7 @@
 <span class="kn">from</span> <span class="nn">qns.simulator.ts</span> <span class="kn">import</span> <span class="n">Time</span>
 
 
-<div class="viewcode-block" id="NodeProcessDelayApp"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.NodeProcessDelayApp">[docs]</a><span class="k">class</span> <span class="nc">NodeProcessDelayApp</span><span class="p">(</span><span class="n">Application</span><span class="p">):</span>
+<div class="viewcode-block" id="NodeProcessDelayApp"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.node_process_delay.NodeProcessDelayApp">[docs]</a><span class="k">class</span> <span class="nc">NodeProcessDelayApp</span><span class="p">(</span><span class="n">Application</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This application will add an addition delay whenever the node received an event.</span>
 <span class="sd">    It is used to represent the processing delay on quantum nodes.</span>
@@ -111,15 +111,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delay_event_list</span> <span class="o">=</span> <span class="n">delay_event_list</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait_rehandle_event_list</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="NodeProcessDelayApp.install"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.NodeProcessDelayApp.install">[docs]</a>    <span class="k">def</span> <span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">QNode</span><span class="p">,</span> <span class="n">simulator</span><span class="p">:</span> <span class="n">Simulator</span><span class="p">):</span>
+<div class="viewcode-block" id="NodeProcessDelayApp.install"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.node_process_delay.NodeProcessDelayApp.install">[docs]</a>    <span class="k">def</span> <span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">QNode</span><span class="p">,</span> <span class="n">simulator</span><span class="p">:</span> <span class="n">Simulator</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">simulator</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="NodeProcessDelayApp.check_in_delay_event_list"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.NodeProcessDelayApp.check_in_delay_event_list">[docs]</a>    <span class="k">def</span> <span class="nf">check_in_delay_event_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="NodeProcessDelayApp.check_in_delay_event_list"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.node_process_delay.NodeProcessDelayApp.check_in_delay_event_list">[docs]</a>    <span class="k">def</span> <span class="nf">check_in_delay_event_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay_event_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay_event_list</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="NodeProcessDelayApp.handle"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.NodeProcessDelayApp.handle">[docs]</a>    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">QNode</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="NodeProcessDelayApp.handle"><a class="viewcode-back" href="../../../../qns.network.protocol.html#qns.network.protocol.node_process_delay.NodeProcessDelayApp.handle">[docs]</a>    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">QNode</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_in_delay_event_list</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">False</span>
 

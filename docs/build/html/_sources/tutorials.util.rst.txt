@@ -19,12 +19,14 @@ Users can set the logging level and record logs:
 
 .. code-block:: Python
 
+    import logging
+    
     log.logger.setLevel(logging.INFO)
     a = 1
 
     log.debug("debug message")
-    log.info("info message", a)
-    log.warn("warn message", a+1)
+    log.info("info message %d", a)
+    log.warn("warn message %d", a + 1)
     log.error("error message")
     log.critical("critical message")
 

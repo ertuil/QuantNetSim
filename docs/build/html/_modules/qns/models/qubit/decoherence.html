@@ -40,7 +40,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Install Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../develop.html">Develop Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">qns</a></li>
 </ul>
 
         </div>
@@ -87,198 +87,137 @@
 
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">qns.models.qubit.const</span> <span class="kn">import</span> <span class="n">QUBIT_STATE_0</span>
 <span class="kn">from</span> <span class="nn">qns.models.qubit.gate</span> <span class="kn">import</span> <span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qns.models.qubit.qubit</span> <span class="kn">import</span> <span class="n">QState</span>
+<span class="kn">from</span> <span class="nn">qns.utils.rnd</span> <span class="kn">import</span> <span class="n">get_rand</span>
 
 
-<div class="viewcode-block" id="PrefectStorageErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.PrefectStorageErrorModel">[docs]</a><span class="k">def</span> <span class="nf">PrefectStorageErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="PrefectError"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.decoherence.PrefectError">[docs]</a><span class="k">def</span> <span class="nf">PrefectError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The default error model for storing a qubit in quantum memory.</span>
-<span class="sd">    The default behavior is doing nothing</span>
+<span class="sd">    The default error model for this qubit.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        t: the time stored in a quantum memory. The unit it second.</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate.</span>
-<span class="sd">        kwargs: other parameters</span>
+<span class="sd">        p (float): the error possibility</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="DephaseStorageErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.DephaseStorageErrorModel">[docs]</a><span class="k">def</span> <span class="nf">DephaseStorageErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DephaseError"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.decoherence.DephaseError">[docs]</a><span class="k">def</span> <span class="nf">DephaseError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The dephase error model for storing a qubit in quantum memory.</span>
-
-<span class="sd">    A random Z gate will be operate on the qubit with possibility: 1-e^(-decoherence_rate * t)</span>
+<span class="sd">    The dephase error model.</span>
+<span class="sd">    A random Z gate will be operate on the qubit with possibility p.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        t: the time stored in a quantum memory. The unit it second.</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
-<span class="sd">        kwargs: other parameters</span>
+<span class="sd">        p (float): the error possibility</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">decoherence_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be positive&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be in [0, 1]&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="DepolarStorageErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.DepolarStorageErrorModel">[docs]</a><span class="k">def</span> <span class="nf">DepolarStorageErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DepolarError"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.decoherence.DepolarError">[docs]</a><span class="k">def</span> <span class="nf">DepolarError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The depolar error model for storing a qubit in quantum memory.</span>
+<span class="sd">    The depolarizing error model.</span>
 
-<span class="sd">    One of the random Pauli gate will be operate on the qubit with possibility:</span>
-<span class="sd">        1-e^(-decoherence_rate * t)</span>
+<span class="sd">    One of the random Pauli gate will be operate on the qubit with possibility p :</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        t: the time stored in a quantum memory. The unit it second.</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
+<span class="sd">        p (float): the error possibility</span>
 <span class="sd">        kwargs: other parameters</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">decoherence_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be positive&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be in [0, 1]&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="PrefectTransferErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.PrefectTransferErrorModel">[docs]</a><span class="k">def</span> <span class="nf">PrefectTransferErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="BitFlipError"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.decoherence.BitFlipError">[docs]</a><span class="k">def</span> <span class="nf">BitFlipError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The default error model for transmitting this qubit</span>
-<span class="sd">    The default behavior is doing nothing</span>
+<span class="sd">    The bit flip error model.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        length (float): the length of the channel</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate.</span>
+<span class="sd">        p (float): the error possibility, [0, 1]</span>
 <span class="sd">        kwargs: other parameters</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be in [0, 1]&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="DephaseTransferErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.DephaseTransferErrorModel">[docs]</a><span class="k">def</span> <span class="nf">DephaseTransferErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DissipationError"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.decoherence.DissipationError">[docs]</a><span class="k">def</span> <span class="nf">DissipationError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The dephase error model for transmitting a qubit in quantum channel.</span>
-
-<span class="sd">    A random Z gate will be operate on the qubit with possibility: 1-e^(-decoherence_rate * length)</span>
+<span class="sd">    The dissipation error model.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        length: the channel length</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
+<span class="sd">        p (float): the error possibility, [0, 1]</span>
 <span class="sd">        kwargs: other parameters</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">decoherence_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be positive&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span> <span class="o">*</span> <span class="n">length</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span></div>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be in [0, 1]&quot;</span><span class="p">)</span>
+    <span class="n">real_p</span> <span class="o">=</span> <span class="n">get_rand</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">real_p</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">QState</span><span class="p">([</span><span class="bp">self</span><span class="p">],</span> <span class="n">state</span><span class="o">=</span><span class="n">QUBIT_STATE_0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DepolarTransferErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.DepolarTransferErrorModel">[docs]</a><span class="k">def</span> <span class="nf">DepolarTransferErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The depolar error model for transmitting a qubit in quantum channel.</span>
+<div class="viewcode-block" id="ErrorWithTime"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.decoherence.ErrorWithTime">[docs]</a><span class="k">def</span> <span class="nf">ErrorWithTime</span><span class="p">(</span><span class="n">ErrorModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;generate the error. The error possibility is 1-e^{-decoherence_rate * t}&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">GeneratedErrorWithTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The error model with time for this qubit. The error possibility is 1-e^{-decoherence_rate * t}.</span>
 
-<span class="sd">    One of the random Pauli gate will be operate on the qubit with possibility:</span>
-<span class="sd">        1-e^(-decoherence_rate * t)</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        length: the channel length</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
-<span class="sd">        kwargs: other parameters</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">decoherence_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be positive&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span> <span class="o">*</span> <span class="n">length</span><span class="p">)</span>
-    <span class="k">if</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            t (float): the during time in second.</span>
+<span class="sd">            decoherence_rate (float): the decoherence rate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+        <span class="n">ErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">GeneratedErrorWithTime</span></div>
 
 
-<div class="viewcode-block" id="PrefectOperateErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.PrefectOperateErrorModel">[docs]</a><span class="k">def</span> <span class="nf">PrefectOperateErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The default error model for operating this qubit.</span>
+<div class="viewcode-block" id="ErrorWithLength"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.decoherence.ErrorWithLength">[docs]</a><span class="k">def</span> <span class="nf">ErrorWithLength</span><span class="p">(</span><span class="n">ErrorModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;generate the error. The error possibility is 1-e^{-decoherence_rate * length}&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">GeneratedErrorWithLength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The error model with length for this qubit. The error possibility is 1-e^{-decoherence_rate * length}.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="DephaseOperateErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.DephaseOperateErrorModel">[docs]</a><span class="k">def</span> <span class="nf">DephaseOperateErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The dephase error model for operating this qubit.</span>
-<span class="sd">    A random Z gate will be operate on the qubit with possibility: 1-e^(-decoherence_rate)</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">decoherence_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be positive&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            length (float): the transmission length in meter.</span>
+<span class="sd">            decoherence_rate (float): the decoherence rate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span> <span class="o">*</span> <span class="n">length</span><span class="p">)</span>
+        <span class="n">ErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">GeneratedErrorWithLength</span></div>
 
 
-<div class="viewcode-block" id="DepolarOperateErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.DepolarOperateErrorModel">[docs]</a><span class="k">def</span> <span class="nf">DepolarOperateErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The depolar error model for operating on a qubit.</span>
+<span class="n">PrefectStorageErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithTime</span><span class="p">(</span><span class="n">PrefectError</span><span class="p">)</span>
+<span class="n">PrefectTransferErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithLength</span><span class="p">(</span><span class="n">PrefectError</span><span class="p">)</span>
+<span class="n">PrefectOperateErrorModel</span> <span class="o">=</span> <span class="n">PrefectError</span>
+<span class="n">PrefectMeasureErrorModel</span> <span class="o">=</span> <span class="n">PrefectError</span>
 
-<span class="sd">    One of the random Pauli gate will be operate on the qubit with possibility:</span>
-<span class="sd">        1-e^(-decoherence_rate * t)</span>
+<span class="n">DephaseStorageErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithTime</span><span class="p">(</span><span class="n">DephaseError</span><span class="p">)</span>
+<span class="n">DephaseTransferErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithLength</span><span class="p">(</span><span class="n">DephaseError</span><span class="p">)</span>
+<span class="n">DephaseOperateErrorModel</span> <span class="o">=</span> <span class="n">DephaseError</span>
+<span class="n">DephaseMeasureErrorModel</span> <span class="o">=</span> <span class="n">DephaseError</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
-<span class="sd">        kwargs: other parameters</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">decoherence_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be positive&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span><span class="p">)</span>
-    <span class="k">if</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span></div>
+<span class="n">DepolarStorageErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithTime</span><span class="p">(</span><span class="n">DepolarError</span><span class="p">)</span>
+<span class="n">DepolarTransferErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithLength</span><span class="p">(</span><span class="n">DepolarError</span><span class="p">)</span>
+<span class="n">DepolarOperateErrorModel</span> <span class="o">=</span> <span class="n">DepolarError</span>
+<span class="n">DepolarMeasureErrorModel</span> <span class="o">=</span> <span class="n">DepolarError</span>
 
+<span class="n">BitFlipStorageErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithTime</span><span class="p">(</span><span class="n">BitFlipError</span><span class="p">)</span>
+<span class="n">BitFilpTransferErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithLength</span><span class="p">(</span><span class="n">BitFlipError</span><span class="p">)</span>
+<span class="n">BitFlipOperateErrorModel</span> <span class="o">=</span> <span class="n">BitFlipError</span>
+<span class="n">BitFlipMeasureErrorModel</span> <span class="o">=</span> <span class="n">BitFlipError</span>
 
-<div class="viewcode-block" id="PrefectMeasureErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.PrefectMeasureErrorModel">[docs]</a><span class="k">def</span> <span class="nf">PrefectMeasureErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The default error model for measuring this qubit.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="DephaseMeasureErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.DephaseMeasureErrorModel">[docs]</a><span class="k">def</span> <span class="nf">DephaseMeasureErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The dephase error model for measuring this qubit,</span>
-<span class="sd">    A random Z gate will be operate on the qubit with possibility: 1-e^(-decoherence_rate)</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">decoherence_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be positive&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span></div>
-
-
-<div class="viewcode-block" id="DepolarMeasureErrorModel"><a class="viewcode-back" href="../../../../qns.models.qubit.html#qns.models.qubit.DepolarMeasureErrorModel">[docs]</a><span class="k">def</span> <span class="nf">DepolarMeasureErrorModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decoherence_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The depolar error model for measuring on a qubit.</span>
-
-<span class="sd">    One of the random Pauli gate will be operate on the qubit with possibility:</span>
-<span class="sd">        1-e^(-decoherence_rate * t)</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        decoherence_rate (float): the decoherence rate</span>
-<span class="sd">        kwargs: other parameters</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">decoherence_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error decoherence rate, should be positive&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">decoherence_rate</span><span class="p">)</span>
-    <span class="k">if</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stochastic_operate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span></div>
+<span class="n">DissipationStorageErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithTime</span><span class="p">(</span><span class="n">DissipationError</span><span class="p">)</span>
+<span class="n">DissipationTransferErrorModel</span> <span class="o">=</span> <span class="n">ErrorWithLength</span><span class="p">(</span><span class="n">DissipationError</span><span class="p">)</span>
+<span class="n">DissipationOperateErrorModel</span> <span class="o">=</span> <span class="n">DissipationError</span>
+<span class="n">DissipationMeasureErrorModel</span> <span class="o">=</span> <span class="n">DissipationError</span>
 </pre></div>
 
            </div>

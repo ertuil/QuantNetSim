@@ -114,8 +114,8 @@
     <span class="n">lines_number</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">qchannel_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
     <span class="n">cchannel_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
-    <span class="n">memory_args</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">memory_capacity</span><span class="p">}],</span>
-    <span class="n">nodes_apps</span><span class="o">=</span><span class="p">[</span><span class="n">EntanglementDistributionApp</span><span class="p">(</span><span class="n">init_fidelity</span><span class="o">=</span><span class="n">init_fidelity</span><span class="p">)])</span>
+    <span class="n">memory_args</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}],</span>
+    <span class="n">nodes_apps</span><span class="o">=</span><span class="p">[</span><span class="n">EntanglementDistributionApp</span><span class="p">(</span><span class="n">init_fidelity</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)])</span>
 
 <span class="c1"># build the network</span>
 <span class="n">net</span> <span class="o">=</span> <span class="n">QuantumNetwork</span><span class="p">(</span><span class="n">topo</span><span class="o">=</span><span class="n">topo</span><span class="p">)</span>
@@ -140,16 +140,17 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">ClassicTopology.Empty</span></code>, no classic topology will be built</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ClassicTopology.Follow</span></code>, the classic topology will be the same to the quantum topology</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qns.network.topology</span> <span class="kn">import</span> <span class="n">RandomTopology</span><span class="p">,</span> <span class="n">ClassicTopology</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qns.network.topology</span> <span class="kn">import</span> <span class="n">RandomTopology</span>
 <span class="kn">from</span> <span class="nn">qns.network.network</span> <span class="kn">import</span> <span class="n">QuantumNetwork</span>
+<span class="kn">from</span> <span class="nn">qns.network.topology.topo</span> <span class="kn">import</span> <span class="n">ClassicTopology</span>
 
 <span class="n">topo</span> <span class="o">=</span> <span class="n">RandomTopology</span><span class="p">(</span>
     <span class="n">nodes_number</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="n">lines_number</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">qchannel_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
     <span class="n">cchannel_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
-    <span class="n">memory_args</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">memory_capacity</span><span class="p">}],</span>
-    <span class="n">nodes_apps</span><span class="o">=</span><span class="p">[</span><span class="n">EntanglementDistributionApp</span><span class="p">(</span><span class="n">init_fidelity</span><span class="o">=</span><span class="n">init_fidelity</span><span class="p">)])</span>
+    <span class="n">memory_args</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}],</span>
+    <span class="n">nodes_apps</span><span class="o">=</span><span class="p">[</span><span class="n">EntanglementDistributionApp</span><span class="p">(</span><span class="n">init_fidelity</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)])</span>
 
 <span class="c1"># build the network, classic topology follows the quantum topology</span>
 <span class="n">net</span> <span class="o">=</span> <span class="n">QuantumNetwork</span><span class="p">(</span><span class="n">topo</span><span class="o">=</span><span class="n">topo</span><span class="p">,</span> <span class="n">classic_topo</span><span class="o">=</span><span class="n">ClassicTopology</span><span class="o">.</span><span class="n">Follow</span><span class="p">)</span>
@@ -176,12 +177,12 @@
 <span class="n">n2</span> <span class="o">=</span> <span class="n">QNode</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;n2&quot;</span><span class="p">)</span>
 <span class="n">net</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
 
-<span class="c1"># get a quantum channel by its name</span>
-<span class="n">l1</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">get_qchannel</span><span class="p">(</span><span class="s2">&quot;l1&quot;</span><span class="p">)</span>
+  <span class="c1"># get a quantum channel by its name</span>
+<span class="n">l1</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">get_qchannel</span><span class="p">(</span><span class="s2">&quot;l1,2&quot;</span><span class="p">)</span>
 
 <span class="c1"># add a quantum channel</span>
 <span class="n">l2</span> <span class="o">=</span> <span class="n">QuantumChannel</span><span class="p">(</span><span class="s2">&quot;l2&quot;</span><span class="p">)</span>
-<span class="n">net</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+<span class="n">net</span><span class="o">.</span><span class="n">add_qchannel</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
 
 <span class="n">node_list</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">nodes</span> <span class="c1"># get all nodes</span>
 <span class="n">qchannel_list</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">qchannels</span> <span class="c1"># get all quantum channels</span>

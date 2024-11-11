@@ -112,7 +112,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code> methods are used to store and get a qubit. The <code class="docutils literal notranslate"><span class="pre">read</span></code> methods will use the qubit’s name or reference as the keyword to search the qubit.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">q1</span> <span class="o">=</span> <span class="n">Qubit</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span>
-<span class="n">q2</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">q2</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The memory can have a limited size. <code class="docutils literal notranslate"><span class="pre">is_full</span></code> function returns whether the memory is full:</p>
