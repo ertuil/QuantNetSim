@@ -209,18 +209,6 @@ class EntanglementDistributionApp(Application):
                     transmit.first_epr_name)
                 second_epr: WernerStateEntanglement = self.memory.read(
                     transmit.second_epr_name)
-                #change code
-                #Check fidelitu before swapping
-                if first_epr.fidelity < 0.7 or second_epr.fidelity < 0.7:
-                    #Inroduce probability of decoherence based on fidelity
-                    print("test")
-                    decoherence_probability = 1 - min(first_epr.fidelity, second_epr.fidelity) / 0.7
-                    if get_rand() < decoherence_probability:
-                        log.debug(f"{self.own}:Decoherence occurred, revoking entanglement.")
-                        self.revoke_entanglement(transmit, from_node, cchannel)
-                        self.restart_request(transmit)
-                        return
-                #
                 new_epr = first_epr.swapping(second_epr, name=uuid.uuid4().hex)
                 log.debug(
                     f"{self.own}:perform swap use {first_epr} and {second_epr}")
