@@ -24,11 +24,11 @@ The simulation is last for 10 seconds and the ``accuracy`` is 10,000,000,000 slo
     import numpy as np
 
     light_speed = 299791458
-    length = 100000 # 100,000 km
+    length = 100000 # 100,000 m
 
     def drop_rate(length):
         # drop 0.2 db/KM
-        return 1 - np.exp(- length / 50000)
+        return 1 - np.exp(- length / 50000) #or  1 - np.power(10, - length / 50000)
 
     # generate quantum nodes
     n1 = QNode(name="n1")
@@ -88,6 +88,7 @@ First, we generate the simulator and produce the network produce:
     from qns.network.route.dijkstra import DijkstraRouteAlgorithm
     from qns.network.topology.topo import ClassicTopology
     import qns.utils.log as log
+    import logging
 
     init_fidelity = 0.99 # the initial entanglement's fidelity 
     nodes_number = 150 # the number of nodes
@@ -134,7 +135,7 @@ Now, it is possible to run the simulation and get the results:
     s.run()
 
     # count the number of successful entanglement distribution for each session
-    results = [src.apps[0].success_count for req in net.requests]
+    results = [req.src.apps[0].success_count for req in net.requests]
 
     # log the results
     log.monitor(requests_number, nodes_number, results, s.time_spend, sep=" ")

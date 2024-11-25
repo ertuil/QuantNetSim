@@ -85,10 +85,10 @@ SimQN also provides some commonly used decoherence models, including dephase mod
 
 .. code-block:: python
 
-    from qns.models.qubit.decoherence import DepolarStorageErrorModel, DephaseTransmitErrorModel
+    from qns.models.qubit.decoherence import DepolarStorageErrorModel, DephaseTransferErrorModel
     from qns.models.qubit.factory import QubitFactory
 
-    Qubit = QubitFactory(store_error_model=DepolarStorageErrorModel, transfer_error_model=DephaseTransmitErrorModel)
+    Qubit = QubitFactory(store_error_model=DepolarStorageErrorModel, transfer_error_model=DephaseTransferErrorModel)
     q1 = Qubit(name="q1")
     q2 = Qubit(name="q2")
 
@@ -96,7 +96,7 @@ SimQN also have error models for operating or measuring on qubits, by implementi
 
 .. code-block:: python
 
-    from qns.models.qubit.decoherence import DepolarStorageErrorModel, DephaseTransmitErrorModel
+    from qns.models.qubit.decoherence import DepolarStorageErrorModel, DephaseTransferErrorModel
     from qns.models.qubit.factory import QubitFactory
 
     Qubit = QubitFactory(operate_decoherence_rate=0.2,

@@ -88,11 +88,11 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">qns.models.qubit.const</span> <span class="kn">import</span> <span class="n">QUBIT_STATE_0</span><span class="p">,</span> <span class="n">QUBIT_STATE_1</span><span class="p">,</span>\
+<span class="kn">from</span> <span class="nn">qns.models.qubit.const</span> <span class="kn">import</span> <span class="n">QUBIT_STATE_0</span><span class="p">,</span> <span class="n">QUBIT_STATE_1</span><span class="p">,</span> \
         <span class="n">QUBIT_STATE_P</span><span class="p">,</span> <span class="n">QUBIT_STATE_N</span><span class="p">,</span> <span class="n">QUBIT_STATE_L</span><span class="p">,</span> <span class="n">QUBIT_STATE_R</span>
-<span class="kn">from</span> <span class="nn">qns.models.qubit.utils</span> <span class="kn">import</span> <span class="n">single_gate_expand</span><span class="p">,</span> <span class="n">partial_trace</span>
+<span class="kn">from</span> <span class="nn">qns.models.qubit.utils</span> <span class="kn">import</span> <span class="n">single_gate_expand</span><span class="p">,</span> <span class="n">partial_trace</span><span class="p">,</span> <span class="n">kron</span>
 <span class="kn">from</span> <span class="nn">qns.models.core.backend</span> <span class="kn">import</span> <span class="n">QuantumModel</span>
-<span class="kn">from</span> <span class="nn">qns.models.qubit.errors</span> <span class="kn">import</span> <span class="n">QStateBaseError</span><span class="p">,</span> <span class="n">QStateQubitNotInStateError</span><span class="p">,</span>\
+<span class="kn">from</span> <span class="nn">qns.models.qubit.errors</span> <span class="kn">import</span> <span class="n">QStateBaseError</span><span class="p">,</span> <span class="n">QStateQubitNotInStateError</span><span class="p">,</span> \
                                     <span class="n">QStateSizeNotMatchError</span><span class="p">,</span> <span class="n">OperatorNotMatchError</span>
 <span class="kn">from</span> <span class="nn">qns.utils.rnd</span> <span class="kn">import</span> <span class="n">get_rand</span>
 
@@ -124,7 +124,6 @@
                 <span class="k">raise</span> <span class="n">QStateSizeNotMatchError</span>
             <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">rho</span><span class="o">.</span><span class="n">trace</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mf">0.0000000001</span><span class="p">:</span>
                 <span class="c1"># trace = 1</span>
-                <span class="nb">print</span><span class="p">(</span><span class="mi">2333</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">rho</span><span class="o">.</span><span class="n">trace</span><span class="p">())</span>
                 <span class="k">raise</span> <span class="n">QStateSizeNotMatchError</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
 
@@ -164,7 +163,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qubits</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
             <span class="n">shift</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">-</span> <span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="k">assert</span><span class="p">(</span><span class="n">shift</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="p">(</span><span class="n">shift</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">QStateQubitNotInStateError</span>
 
@@ -172,11 +171,11 @@
         <span class="n">Full_M_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">idx</span><span class="p">:</span>
-                <span class="n">Full_M_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">Full_M_0</span><span class="p">,</span> <span class="n">M_0</span><span class="p">)</span>
-                <span class="n">Full_M_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">Full_M_1</span><span class="p">,</span> <span class="n">M_1</span><span class="p">)</span>
+                <span class="n">Full_M_0</span> <span class="o">=</span> <span class="n">kron</span><span class="p">(</span><span class="n">Full_M_0</span><span class="p">,</span> <span class="n">M_0</span><span class="p">)</span>
+                <span class="n">Full_M_1</span> <span class="o">=</span> <span class="n">kron</span><span class="p">(</span><span class="n">Full_M_1</span><span class="p">,</span> <span class="n">M_1</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">Full_M_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">Full_M_0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
-                <span class="n">Full_M_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">Full_M_1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
+                <span class="n">Full_M_0</span> <span class="o">=</span> <span class="n">kron</span><span class="p">(</span><span class="n">Full_M_0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
+                <span class="n">Full_M_1</span> <span class="o">=</span> <span class="n">kron</span><span class="p">(</span><span class="n">Full_M_1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
 
         <span class="n">poss_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Full_M_0</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Full_M_0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">)))</span>
         <span class="n">rn</span> <span class="o">=</span> <span class="n">get_rand</span><span class="p">()</span>

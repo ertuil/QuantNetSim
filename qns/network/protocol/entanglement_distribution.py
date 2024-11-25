@@ -48,7 +48,7 @@ class Transmit():
 
 
 class EntanglementDistributionApp(Application):
-    def __init__(self, send_rate: Optional[int] = None, init_fidelity: int = 0.99):
+    def __init__(self, send_rate: Optional[int] = None, init_fidelity: float = 0.99):
         super().__init__()
         self.init_fidelity = init_fidelity
         self.net: QuantumNetwork = None

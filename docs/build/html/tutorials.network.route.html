@@ -120,7 +120,7 @@
 <h2>The Dijkstra’s algorithm<a class="headerlink" href="#the-dijkstra-s-algorithm" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">DijkstraRouteAlgorithm</span></code> implements the <code class="docutils literal notranslate"><span class="pre">RouteImpl</span></code> based on the Dijkstra’s algorithm. It has a optional injectable metric function <code class="docutils literal notranslate"><span class="pre">metric_func</span></code>. Its input is the quantum channel and returns the channels’ metric. By default, the <code class="docutils literal notranslate"><span class="pre">metric_func</span></code> returns 1. But users can provide their own <code class="docutils literal notranslate"><span class="pre">metric_func</span></code>, such as the bandwidth or the congestion of the channel.</p>
 <p>An example of using this algorithm is:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qns.network.topology</span> <span class="kn">import</span> <span class="n">RandomTopology</span><span class="p">,</span> <span class="n">ClassicTopology</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qns.network.topology</span> <span class="kn">import</span> <span class="n">RandomTopology</span>
 <span class="kn">from</span> <span class="nn">qns.network.network</span> <span class="kn">import</span> <span class="n">QuantumNetwork</span>
 <span class="kn">from</span> <span class="nn">qns.network.route</span> <span class="kn">import</span> <span class="n">DijkstraRouteAlgorithm</span>
 
@@ -129,8 +129,8 @@
     <span class="n">lines_number</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">qchannel_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s2">&quot;bandwidth&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
     <span class="n">cchannel_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
-    <span class="n">memory_args</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">memory_capacity</span><span class="p">}],</span>
-    <span class="n">nodes_apps</span><span class="o">=</span><span class="p">[</span><span class="n">EntanglementDistributionApp</span><span class="p">(</span><span class="n">init_fidelity</span><span class="o">=</span><span class="n">init_fidelity</span><span class="p">)])</span>
+    <span class="n">memory_args</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}],</span>
+    <span class="n">nodes_apps</span><span class="o">=</span><span class="p">[</span><span class="n">EntanglementDistributionApp</span><span class="p">(</span><span class="n">init_fidelity</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)])</span>
 
 <span class="c1"># use the ``DijkstraRouteAlgorithm``, using the bandwidth as the ``metric_func``</span>
 <span class="n">route</span> <span class="o">=</span> <span class="n">DijkstraRouteAlgorithm</span><span class="p">(</span><span class="n">metric_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">qchannel</span><span class="p">:</span> <span class="n">qchannel</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">)</span>

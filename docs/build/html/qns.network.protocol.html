@@ -96,7 +96,7 @@
 <span id="qns-network-protocol-bb84-module"></span><h2>qns.network.protocol.bb84 module<a class="headerlink" href="#module-qns.network.protocol.bb84" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84RecvApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">BB84RecvApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.node.html#qns.entity.node.node.QNode" title="qns.entity.node.node.QNode"><span class="pre">qns.entity.node.node.QNode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.QuantumChannel" title="qns.entity.qchannel.qchannel.QuantumChannel"><span class="pre">qns.entity.qchannel.qchannel.QuantumChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.ClassicChannel" title="qns.entity.cchannel.cchannel.ClassicChannel"><span class="pre">qns.entity.cchannel.cchannel.ClassicChannel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84RecvApp" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">BB84RecvApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.node.html#qns.entity.node.node.QNode" title="qns.entity.node.node.QNode"><span class="pre">qns.entity.node.node.QNode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.QuantumChannel" title="qns.entity.qchannel.qchannel.QuantumChannel"><span class="pre">qns.entity.qchannel.qchannel.QuantumChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.ClassicChannel" title="qns.entity.cchannel.cchannel.ClassicChannel"><span class="pre">qns.entity.cchannel.cchannel.ClassicChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_length_for_post_processing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proportion_for_estimating_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cascade_round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cascade_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.73</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cascade_beita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_lower_cascade_key_block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_upper_cascade_key_block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">security</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84RecvApp" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="qns.entity.node.html#qns.entity.node.app.Application" title="qns.entity.node.app.Application"><code class="xref py py-class docutils literal notranslate"><span class="pre">qns.entity.node.app.Application</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84RecvApp.check_basis">
@@ -118,11 +118,50 @@
 <span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.RecvQubitPacket" title="qns.entity.qchannel.qchannel.RecvQubitPacket"><span class="pre">qns.entity.qchannel.qchannel.RecvQubitPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.recv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84RecvApp.recv" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84RecvApp.recv_cascade_reply_packet">
+<span class="sig-name descname"><span class="pre">recv_cascade_reply_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.recv_cascade_reply_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84RecvApp.recv_cascade_reply_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84RecvApp recv cascade_reply packet,perform next round of cascade,and send cascade_ask packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the cascade_reply packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84RecvApp.recv_check_error_reply_packet">
+<span class="sig-name descname"><span class="pre">recv_check_error_reply_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.recv_check_error_reply_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84RecvApp.recv_check_error_reply_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84RecvApp recv check_error_reply packet,perform privacy amplification,and send privacy_amplification_ask packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the check_error_reply packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84RecvApp.recv_error_estimate_reply_packet">
+<span class="sig-name descname"><span class="pre">recv_error_estimate_reply_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.recv_error_estimate_reply_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84RecvApp.recv_error_estimate_reply_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84RecvApp recv error_estimate_reply packet,perform the first round of cascade,send cascade_ask packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the error_estimate_reply packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84RecvApp.send_error_estimate_packet">
+<span class="sig-name descname"><span class="pre">send_error_estimate_packet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.send_error_estimate_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84RecvApp.send_error_estimate_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84Recvapp send error estimate ask packet.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84SendApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">BB84SendApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.node.html#qns.entity.node.node.QNode" title="qns.entity.node.node.QNode"><span class="pre">qns.entity.node.node.QNode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.QuantumChannel" title="qns.entity.qchannel.qchannel.QuantumChannel"><span class="pre">qns.entity.qchannel.qchannel.QuantumChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.ClassicChannel" title="qns.entity.cchannel.cchannel.ClassicChannel"><span class="pre">qns.entity.cchannel.cchannel.ClassicChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84SendApp" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">BB84SendApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.node.html#qns.entity.node.node.QNode" title="qns.entity.node.node.QNode"><span class="pre">qns.entity.node.node.QNode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.QuantumChannel" title="qns.entity.qchannel.qchannel.QuantumChannel"><span class="pre">qns.entity.qchannel.qchannel.QuantumChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.ClassicChannel" title="qns.entity.cchannel.cchannel.ClassicChannel"><span class="pre">qns.entity.cchannel.cchannel.ClassicChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_length_for_post_processing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proportion_for_estimating_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cascade_round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cascade_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.73</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cascade_beita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_lower_cascade_key_block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_upper_cascade_key_block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">security</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84SendApp" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="qns.entity.node.html#qns.entity.node.app.Application" title="qns.entity.node.app.Application"><code class="xref py py-class docutils literal notranslate"><span class="pre">qns.entity.node.app.Application</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84SendApp.check_basis">
@@ -144,6 +183,50 @@
 <li><p><strong>node</strong> (<a class="reference internal" href="qns.entity.html#qns.entity.QNode" title="qns.entity.QNode"><em>QNode</em></a>) – the node that will handle this event</p></li>
 <li><p><strong>simulator</strong> (<a class="reference internal" href="qns.simulator.html#qns.simulator.simulator.Simulator" title="qns.simulator.simulator.Simulator"><em>Simulator</em></a>) – the simulator</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84SendApp.recv_cascade_ask_packet">
+<span class="sig-name descname"><span class="pre">recv_cascade_ask_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp.recv_cascade_ask_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84SendApp.recv_cascade_ask_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84SendApp recv cascade_ask packet,calculate the parity value of the corresponding block,and send cascade_reply packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the cascade_ask packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84SendApp.recv_check_error_ask_packet">
+<span class="sig-name descname"><span class="pre">recv_check_error_ask_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp.recv_check_error_ask_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84SendApp.recv_check_error_ask_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84SendApp recv check_error_ask packet,check error,and send check_error_reply packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the check_error_ask packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84SendApp.recv_error_estimate_packet">
+<span class="sig-name descname"><span class="pre">recv_error_estimate_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp.recv_error_estimate_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84SendApp.recv_error_estimate_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84SendApp recv error estimate packet,and send error_estimate_reply packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the error estimate packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.BB84SendApp.recv_privacy_amplification_ask_packet">
+<span class="sig-name descname"><span class="pre">recv_privacy_amplification_ask_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp.recv_privacy_amplification_ask_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.BB84SendApp.recv_privacy_amplification_ask_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84SendApp recv privacy_amplification_ask packet,perform privacy amplification.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the privacy_amplification_ask packet.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -175,6 +258,72 @@ The default behavior is doing nothing</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.cascade_binary_divide">
+<span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">cascade_binary_divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">begin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#cascade_binary_divide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.cascade_binary_divide" title="Permalink to this definition"></a></dt>
+<dd><p>Evenly divided the key block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>begin</strong> – key block begin index.</p></li>
+<li><p><strong>end</strong> – key block end index.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.cascade_key_shuffle">
+<span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">cascade_key_shuffle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#cascade_key_shuffle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.cascade_key_shuffle" title="Permalink to this definition"></a></dt>
+<dd><p>Shuffle the index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> – the index list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.cascade_parity">
+<span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">cascade_parity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#cascade_parity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.cascade_parity" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate key block parity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target</strong> – target key block.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.pa_generate_toeplitz_matrix">
+<span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">pa_generate_toeplitz_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#pa_generate_toeplitz_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.pa_generate_toeplitz_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a Toeplitz matrix of size N x M using two given list of binary values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> – col num of the Toeplitz matrix.</p></li>
+<li><p><strong>M</strong> – row num of the Toeplitz matrix.</p></li>
+<li><p><strong>first_row</strong> – first row of the Toeplitz matrix.</p></li>
+<li><p><strong>first_col</strong> – first col of the Toeplitz matrix.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qns.network.protocol.bb84.pa_randomize_key">
+<span class="sig-prename descclassname"><span class="pre">qns.network.protocol.bb84.</span></span><span class="sig-name descname"><span class="pre">pa_randomize_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toeplitz_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#pa_randomize_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.bb84.pa_randomize_key" title="Permalink to this definition"></a></dt>
+<dd><p>process the original key through the toeplitz matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>original_key</strong> – the original key.</p></li>
+<li><p><strong>toeplitz_matrix</strong> – the toeplitz matrix.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -212,7 +361,7 @@ and allow nodes to forward classic packats to the destination.</p>
 <span id="qns-network-protocol-entanglement-distribution-module"></span><h2>qns.network.protocol.entanglement_distribution module<a class="headerlink" href="#module-qns.network.protocol.entanglement_distribution" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="qns.network.protocol.entanglement_distribution.EntanglementDistributionApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.entanglement_distribution.</span></span><span class="sig-name descname"><span class="pre">EntanglementDistributionApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">send_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_fidelity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/entanglement_distribution.html#EntanglementDistributionApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.entanglement_distribution.EntanglementDistributionApp" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.entanglement_distribution.</span></span><span class="sig-name descname"><span class="pre">EntanglementDistributionApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">send_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_fidelity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/entanglement_distribution.html#EntanglementDistributionApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.entanglement_distribution.EntanglementDistributionApp" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="qns.entity.node.html#qns.entity.node.app.Application" title="qns.entity.node.app.Application"><code class="xref py py-class docutils literal notranslate"><span class="pre">qns.entity.node.app.Application</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="qns.network.protocol.entanglement_distribution.EntanglementDistributionApp.RecvClassicPacketHandler">
@@ -336,7 +485,7 @@ It is used to represent the processing delay on quantum nodes.</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-qns.network.protocol" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="qns.network.protocol.BB84RecvApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.</span></span><span class="sig-name descname"><span class="pre">BB84RecvApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.node.html#qns.entity.node.node.QNode" title="qns.entity.node.node.QNode"><span class="pre">qns.entity.node.node.QNode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.QuantumChannel" title="qns.entity.qchannel.qchannel.QuantumChannel"><span class="pre">qns.entity.qchannel.qchannel.QuantumChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.ClassicChannel" title="qns.entity.cchannel.cchannel.ClassicChannel"><span class="pre">qns.entity.cchannel.cchannel.ClassicChannel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84RecvApp" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.</span></span><span class="sig-name descname"><span class="pre">BB84RecvApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.node.html#qns.entity.node.node.QNode" title="qns.entity.node.node.QNode"><span class="pre">qns.entity.node.node.QNode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.QuantumChannel" title="qns.entity.qchannel.qchannel.QuantumChannel"><span class="pre">qns.entity.qchannel.qchannel.QuantumChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.ClassicChannel" title="qns.entity.cchannel.cchannel.ClassicChannel"><span class="pre">qns.entity.cchannel.cchannel.ClassicChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_length_for_post_processing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proportion_for_estimating_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cascade_round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cascade_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.73</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cascade_beita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_lower_cascade_key_block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_upper_cascade_key_block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">security</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84RecvApp" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="qns.entity.node.html#qns.entity.node.app.Application" title="qns.entity.node.app.Application"><code class="xref py py-class docutils literal notranslate"><span class="pre">qns.entity.node.app.Application</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="qns.network.protocol.BB84RecvApp.check_basis">
@@ -358,11 +507,50 @@ It is used to represent the processing delay on quantum nodes.</p>
 <span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.RecvQubitPacket" title="qns.entity.qchannel.qchannel.RecvQubitPacket"><span class="pre">qns.entity.qchannel.qchannel.RecvQubitPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.recv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84RecvApp.recv" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.BB84RecvApp.recv_cascade_reply_packet">
+<span class="sig-name descname"><span class="pre">recv_cascade_reply_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.recv_cascade_reply_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84RecvApp.recv_cascade_reply_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84RecvApp recv cascade_reply packet,perform next round of cascade,and send cascade_ask packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the cascade_reply packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.BB84RecvApp.recv_check_error_reply_packet">
+<span class="sig-name descname"><span class="pre">recv_check_error_reply_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.recv_check_error_reply_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84RecvApp.recv_check_error_reply_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84RecvApp recv check_error_reply packet,perform privacy amplification,and send privacy_amplification_ask packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the check_error_reply packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.BB84RecvApp.recv_error_estimate_reply_packet">
+<span class="sig-name descname"><span class="pre">recv_error_estimate_reply_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.recv_error_estimate_reply_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84RecvApp.recv_error_estimate_reply_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84RecvApp recv error_estimate_reply packet,perform the first round of cascade,send cascade_ask packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the error_estimate_reply packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.BB84RecvApp.send_error_estimate_packet">
+<span class="sig-name descname"><span class="pre">send_error_estimate_packet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84RecvApp.send_error_estimate_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84RecvApp.send_error_estimate_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84Recvapp send error estimate ask packet.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="qns.network.protocol.BB84SendApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.</span></span><span class="sig-name descname"><span class="pre">BB84SendApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.node.html#qns.entity.node.node.QNode" title="qns.entity.node.node.QNode"><span class="pre">qns.entity.node.node.QNode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.QuantumChannel" title="qns.entity.qchannel.qchannel.QuantumChannel"><span class="pre">qns.entity.qchannel.qchannel.QuantumChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.ClassicChannel" title="qns.entity.cchannel.cchannel.ClassicChannel"><span class="pre">qns.entity.cchannel.cchannel.ClassicChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84SendApp" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.</span></span><span class="sig-name descname"><span class="pre">BB84SendApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.node.html#qns.entity.node.node.QNode" title="qns.entity.node.node.QNode"><span class="pre">qns.entity.node.node.QNode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.qchannel.html#qns.entity.qchannel.qchannel.QuantumChannel" title="qns.entity.qchannel.qchannel.QuantumChannel"><span class="pre">qns.entity.qchannel.qchannel.QuantumChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cchannel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.ClassicChannel" title="qns.entity.cchannel.cchannel.ClassicChannel"><span class="pre">qns.entity.cchannel.cchannel.ClassicChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_length_for_post_processing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proportion_for_estimating_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cascade_round</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cascade_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.73</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cascade_beita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_lower_cascade_key_block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_upper_cascade_key_block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">security</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84SendApp" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="qns.entity.node.html#qns.entity.node.app.Application" title="qns.entity.node.app.Application"><code class="xref py py-class docutils literal notranslate"><span class="pre">qns.entity.node.app.Application</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="qns.network.protocol.BB84SendApp.check_basis">
@@ -384,6 +572,50 @@ It is used to represent the processing delay on quantum nodes.</p>
 <li><p><strong>node</strong> (<a class="reference internal" href="qns.entity.html#qns.entity.QNode" title="qns.entity.QNode"><em>QNode</em></a>) – the node that will handle this event</p></li>
 <li><p><strong>simulator</strong> (<a class="reference internal" href="qns.simulator.html#qns.simulator.simulator.Simulator" title="qns.simulator.simulator.Simulator"><em>Simulator</em></a>) – the simulator</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.BB84SendApp.recv_cascade_ask_packet">
+<span class="sig-name descname"><span class="pre">recv_cascade_ask_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp.recv_cascade_ask_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84SendApp.recv_cascade_ask_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84SendApp recv cascade_ask packet,calculate the parity value of the corresponding block,and send cascade_reply packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the cascade_ask packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.BB84SendApp.recv_check_error_ask_packet">
+<span class="sig-name descname"><span class="pre">recv_check_error_ask_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp.recv_check_error_ask_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84SendApp.recv_check_error_ask_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84SendApp recv check_error_ask packet,check error,and send check_error_reply packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the check_error_ask packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.BB84SendApp.recv_error_estimate_packet">
+<span class="sig-name descname"><span class="pre">recv_error_estimate_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp.recv_error_estimate_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84SendApp.recv_error_estimate_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84SendApp recv error estimate packet,and send error_estimate_reply packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the error estimate packet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qns.network.protocol.BB84SendApp.recv_privacy_amplification_ask_packet">
+<span class="sig-name descname"><span class="pre">recv_privacy_amplification_ask_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qns.entity.cchannel.html#qns.entity.cchannel.cchannel.RecvClassicPacket" title="qns.entity.cchannel.cchannel.RecvClassicPacket"><span class="pre">qns.entity.cchannel.cchannel.RecvClassicPacket</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/bb84.html#BB84SendApp.recv_privacy_amplification_ask_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.BB84SendApp.recv_privacy_amplification_ask_packet" title="Permalink to this definition"></a></dt>
+<dd><p>BB84SendApp recv privacy_amplification_ask packet,perform privacy amplification.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – the privacy_amplification_ask packet.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -424,7 +656,7 @@ and allow nodes to forward classic packats to the destination.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="qns.network.protocol.EntanglementDistributionApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.</span></span><span class="sig-name descname"><span class="pre">EntanglementDistributionApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">send_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_fidelity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/entanglement_distribution.html#EntanglementDistributionApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.EntanglementDistributionApp" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qns.network.protocol.</span></span><span class="sig-name descname"><span class="pre">EntanglementDistributionApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">send_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_fidelity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qns/network/protocol/entanglement_distribution.html#EntanglementDistributionApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qns.network.protocol.EntanglementDistributionApp" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="qns.entity.node.html#qns.entity.node.app.Application" title="qns.entity.node.app.Application"><code class="xref py py-class docutils literal notranslate"><span class="pre">qns.entity.node.app.Application</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="qns.network.protocol.EntanglementDistributionApp.RecvClassicPacketHandler">

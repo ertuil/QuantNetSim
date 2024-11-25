@@ -23,7 +23,7 @@ Quantum memory is an entity that can store qubits. It can be equipped to a quant
 
     q1 = Qubit()
     m.write(q1)
-    q2 = m.read()
+    q2 = m.read(q1)
 
 The memory can have a limited size. ``is_full`` function returns whether the memory is full:
 

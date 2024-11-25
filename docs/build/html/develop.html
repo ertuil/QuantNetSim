@@ -92,7 +92,7 @@ However, the following requirements need to be met:</p>
 <h2>Develop and Compile Instruction<a class="headerlink" href="#develop-and-compile-instruction" title="Permalink to this headline"></a></h2>
 <p>SimQN is a Python library for quantum networks evaluation. It requires Python &gt; 3.7.0. WE leverage <a class="reference external" href="https://pypi.org/project/setuptools/">setuptools</a> to build SimQN:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install setuptools wheel twine
-pip3 install -r requirements
+pip3 install -r requirements.txt
 </pre></div>
 </div>
 <p>To setup the development environments, the following command install SimQN into the python library so that we can do <cite>import qns</cite>:</p>
@@ -119,6 +119,10 @@ pip3 install -r requirements
 </pre></div>
 </div>
 <p>To build document website, use the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs
+make html
+</pre></div>
+</div>
 <p>Now, the compiled static website is built. Our documents is hosted on the <cite>gh-pages</cite> branch. Use the following command to publish new documents:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git subtree push --prefix docs/build/html origin gh-pages
 </pre></div>

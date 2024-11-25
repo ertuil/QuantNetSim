@@ -40,7 +40,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Install Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../develop.html">Develop Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">qns</a></li>
 </ul>
 
         </div>
@@ -91,6 +91,17 @@
 <span class="n">default_accuracy</span> <span class="o">=</span> <span class="mi">1000000</span>  <span class="c1"># {default_accuracy} time slots per second</span>
 
 
+<div class="viewcode-block" id="set_default_accuracy"><a class="viewcode-back" href="../../../qns.simulator.html#qns.simulator.ts.set_default_accuracy">[docs]</a><span class="k">def</span> <span class="nf">set_default_accuracy</span><span class="p">(</span><span class="n">time_slots</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    set the default simulation accuracy</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        time_slots (int): the time slots per second.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">default_accuracy</span>
+    <span class="n">default_accuracy</span> <span class="o">=</span> <span class="n">time_slots</span></div>
+
+
 <div class="viewcode-block" id="Time"><a class="viewcode-back" href="../../../qns.simulator.html#qns.simulator.ts.Time">[docs]</a><span class="k">class</span> <span class="nc">Time</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_slot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">default_accuracy</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
@@ -118,22 +129,40 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="n">other_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">==</span> <span class="n">other_time</span><span class="o">.</span><span class="n">time_slot</span>
 
     <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="n">other_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&lt;</span> <span class="n">other_time</span><span class="o">.</span><span class="n">time_slot</span>
 
     <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span> <span class="ow">or</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="n">other_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&lt;=</span> <span class="n">other_time</span><span class="o">.</span><span class="n">time_slot</span>
 
     <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span> <span class="ow">or</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="n">other_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&gt;</span> <span class="n">other_time</span><span class="o">.</span><span class="n">time_slot</span>
 
     <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="n">other_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">&gt;=</span> <span class="n">other_time</span><span class="o">.</span><span class="n">time_slot</span>
 
     <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="n">other_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">!=</span> <span class="n">other_time</span><span class="o">.</span><span class="n">time_slot</span>
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;Time&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -146,6 +175,19 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
             <span class="n">ts</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">sec</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span><span class="p">)</span>
         <span class="n">tn</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">+=</span> <span class="n">ts</span><span class="o">.</span><span class="n">time_slot</span>
+        <span class="k">return</span> <span class="n">tn</span>
+
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;Time&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Minus an offset to the Time object</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ts (Union[&quot;Time&quot;, float]): a Time object or a float indicating time in second</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tn</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time_slot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">time_slot</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="n">ts</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">sec</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span><span class="p">)</span>
+        <span class="n">tn</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">time_slot</span> <span class="o">-</span> <span class="n">ts</span><span class="o">.</span><span class="n">time_slot</span>
         <span class="k">return</span> <span class="n">tn</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>

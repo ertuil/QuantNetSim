@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en,zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,7 +40,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Install Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../develop.html">Develop Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">qns</a></li>
 </ul>
 
         </div>
@@ -86,6 +86,7 @@
 <span class="c1">#    along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">math</span>
 
 <span class="kn">from</span> <span class="nn">qns.entity.node.node</span> <span class="kn">import</span> <span class="n">QNode</span>
 <span class="kn">from</span> <span class="nn">qns.entity.qchannel.qchannel</span> <span class="kn">import</span> <span class="n">QuantumChannel</span>
@@ -97,6 +98,8 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is the dijkstra route algorithm implement</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">INF</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dijkstra&quot;</span><span class="p">,</span>
                  <span class="n">metric_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="n">QuantumChannel</span><span class="p">,</span> <span class="n">ClassicChannel</span><span class="p">]],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -114,7 +117,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">metric_func</span> <span class="o">=</span> <span class="n">metric_func</span>
 
 <div class="viewcode-block" id="DijkstraRouteAlgorithm.build"><a class="viewcode-back" href="../../../../qns.network.route.html#qns.network.DijkstraRouteAlgorithm.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">QNode</span><span class="p">],</span> <span class="n">channels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">QuantumChannel</span><span class="p">,</span> <span class="n">ClassicChannel</span><span class="p">]]):</span>
-        <span class="n">INF</span> <span class="o">=</span> <span class="mi">999999</span>
 
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
             <span class="n">selected</span> <span class="o">=</span> <span class="p">[]</span>
@@ -125,7 +127,7 @@
                 <span class="k">if</span> <span class="n">nn</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
                     <span class="n">d</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">[]]</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">d</span><span class="p">[</span><span class="n">nn</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">INF</span><span class="p">,</span> <span class="p">[</span><span class="n">nn</span><span class="p">]]</span>
+                    <span class="n">d</span><span class="p">[</span><span class="n">nn</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="p">[</span><span class="n">nn</span><span class="p">]]</span>
 
             <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">unselected</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">ms</span> <span class="o">=</span> <span class="n">unselected</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -178,8 +180,9 @@
             <span class="n">path</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">QNode</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">path</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">metric</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">INF</span><span class="p">:</span>
                 <span class="n">next_hop</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">return</span> <span class="p">[]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">next_hop</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
                 <span class="k">return</span> <span class="p">[(</span><span class="n">metric</span><span class="p">,</span> <span class="n">next_hop</span><span class="p">,</span> <span class="n">path</span><span class="p">)]</span>
