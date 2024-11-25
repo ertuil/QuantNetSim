@@ -31,6 +31,7 @@ from qns.network import QuantumNetwork
 from qns.models.epr import WernerStateEntanglement
 from qns.simulator.ts import Time
 import qns.utils.log as log
+from qns.utils.rnd import get_rand
 
 
 class Transmit():
@@ -209,10 +210,10 @@ class EntanglementDistributionApp(Application):
                     transmit.first_epr_name)
                 second_epr: WernerStateEntanglement = self.memory.read(
                     transmit.second_epr_name)
-                #change code
-                #Check fidelitu before swapping
+                # change code
+                # Check fidelitu before swapping
                 if first_epr.fidelity < 0.7 or second_epr.fidelity < 0.7:
-                    #Inroduce probability of decoherence based on fidelity
+                    # Inroduce probability of decoherence based on fidelity
                     print("test")
                     decoherence_probability = 1 - min(first_epr.fidelity, second_epr.fidelity) / 0.7
                     if get_rand() < decoherence_probability:
